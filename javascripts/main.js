@@ -1,3 +1,12 @@
 // Filter fish that are "on sale"
-$('#main').hide();
+
 // Add fish to "Basket"
+
+// Load fish
+$.get('../db/fishes.json')
+    .done((data) => {
+     console.log(data);
+ })
+    .fail((error) => {
+     console.log(error)
+});
