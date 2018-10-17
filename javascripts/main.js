@@ -6,7 +6,7 @@ const applySale = () => {
         const newPrice = (parseInt(fullPrice.html()) * (1 - discount)).toFixed(2);
         fullPrice.html(newPrice);
     })
-}
+};
 
 // Add fish to "Basket"
 //if else statement that returns a string. ? or : if it was false it would replace it with 'nothing' that came after the colon. or whatever comes after the colon, anyways. if it's true it returns the string/part that is true.
@@ -34,7 +34,7 @@ const writeFishes = (arrayOfFishes) => {
     // Write to the available div using a jQuery selector -- HTML will replace if I was to use .html; you would no longer have a button or the h1. 
     $("#available").append(domString);
     bindEvents();
-}
+};
 //using .on because it's happening AFTER the page loads
 const bindEvents = () => {
     $(".add").on('click', (e) => {
@@ -71,7 +71,7 @@ $("#show-sale").click(() => {
             return 'Show Sale Fish';
         }
     })
-})
+});
 
 
 // Load fish
