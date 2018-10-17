@@ -39,9 +39,26 @@ const bindEvents = () => {
 //after done moving, take the button text and make it 'remove from basket' and change the class. take off 'add' and add a class of 'remove'
 //.target because it's clicking on the button already
     $(e.target).text('Remove From Basket').addClass('remove').removeClass('add');
+    //remove button
+    $('.remove').on('click', (e) => {
+        const fishToMove = $(e.target).closest('.fish');
+        $('#available').append(fishToMove);
+        $(e.target).text('Add To Basket').addClass('add').removeClass('class');
     })
-}
+    })
 
+//another way of writing the above said function is like this: (but if this is how you write it, then you'd have to write the top one just like this one and both would have to be out of the event/function thingy)
+//$('body').on('click'), 'button.remove', (e) => {
+    //const fishToMove = $(e.target).closest('.fish');
+    //$('#available').append(fishToMove);
+    //$(e.target).text('Add To Basket').addClass('add').removeClass('remove);
+//}
+};
+
+$("#show-sale").click(() => {
+    //grab all of the divs with the class fish, give me just the ones without the class on-sale and HIDE them.
+    $('.fish').not('.on-sale').toggle();
+})
 
 
 // Load fish
