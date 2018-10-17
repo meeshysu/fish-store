@@ -1,8 +1,14 @@
-// Filter fish that are "on sale"
+const discount = .12;
+
+const applySale = () => {
+    $('.on-sale').each((i, fish) => {
+        const fullPrice = $(fish).find('.price'); //made fish into jquery
+        const newPrice = (parseInt(fullPrice.html()) * (1 - discount)).toFixed(2);
+        fullPrice.html(newPrice);
+    })
+}
 
 // Add fish to "Basket"
-
-
 //if else statement that returns a string. ? or : if it was false it would replace it with 'nothing' that came after the colon. or whatever comes after the colon, anyways. if it's true it returns the string/part that is true.
 const writeFishes = (arrayOfFishes) => {
     let domString = '';
@@ -73,6 +79,7 @@ $.get('../db/fishes.json')
     .done((data) => {
      console.log(data);
      writeFishes(data.fishes);//data is fishes in the json; fishes brings back that key; will run on page load write fishes
+     applySale();
  })
     .fail((error) => {
      console.log(error)
