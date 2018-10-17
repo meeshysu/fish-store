@@ -2,11 +2,58 @@
 
 // Add fish to "Basket"
 
+
+
+const writeFishes = (arrayOfFishes) => {
+    let domString = '';
+    arrayOfFishes.forEach((fish) => {
+        domString += `
+        <div class="${fish.onSale ? 'on-sale' : ''} fish card col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <img src="${fish.imageSoure}"
+                        alt="" width="40%">
+                    <div class="caption">
+                            <h3 id="thumbnail-label">${fish.name}</h3>
+                        <p>$
+                            <span class="price">${fish.basePrice}</span>
+                        </p>
+                    </div>
+                    <div class="caption card-footer">
+                        <button class="add btn btn-danger">Add To Basket</button>
+                    </div>
+                </div>
+            </div>
+        `
+    })
+    // Write to the available div using a jQuery selector -- HTML will replace if I was to use .html; you would no longer have a button or the h1. 
+    $("#available").append(domString);
+    bindEvents();
+}
+//using .on because it's happening AFTER the page loads
+const bindEvents = () => {
+    $(".add").on('click', (e) => {
+//what is the div that has the fish?  so if i click on a button, it has a fish div somewhere, so grabbing the button that has the fish associated with it.
+    const fishToMove = $(e.target).closest('.fish');
+//wanna take that fish and move it to the 'snagged' div
+    $("#snagged").append(fishToMove);
+//after done moving, take the button text and make it 'remove from basket' and change the class. take off 'add' and add a class of 'remove'
+//.target because it's clicking on the button already
+    $(e.target).text('Remove From Basket').addClass('remove').removeClass('add');
+    })
+}
+
+
+
 // Load fish
 $.get('../db/fishes.json')
     .done((data) => {
      console.log(data);
+     writeFishes(data.fishes);//data is fishes in the json; fishes brings back that key; will run on page load write fishes
  })
     .fail((error) => {
      console.log(error)
 });
+
+
+
+
