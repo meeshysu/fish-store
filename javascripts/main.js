@@ -3,12 +3,12 @@
 // Add fish to "Basket"
 
 
-
+//if else statement that returns a string. ? or : if it was false it would replace it with 'nothing' that came after the colon. or whatever comes after the colon, anyways. if it's true it returns the string/part that is true.
 const writeFishes = (arrayOfFishes) => {
     let domString = '';
     arrayOfFishes.forEach((fish) => {
         domString += `
-        <div class="${fish.onSale ? 'on-sale' : ''} fish card col-md-6 col-md-offset-3">
+        <div class="${fish.onSale ? 'on-sale' : ''} fish card col-md-6 col-md-offset-3"> 
                 <div class="thumbnail">
                     <img src="${fish.imageSoure}"
                         alt="" width="40%">
@@ -58,6 +58,13 @@ const bindEvents = () => {
 $("#show-sale").click(() => {
     //grab all of the divs with the class fish, give me just the ones without the class on-sale and HIDE them.
     $('.fish').not('.on-sale').toggle();
+    $("#show-sale").text((i, text) => {
+        if (text === 'Show Sale Fish') {
+            return 'Show All Fish'
+        } else {
+            return 'Show Sale Fish';
+        }
+    })
 })
 
 
